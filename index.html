@@ -6,6 +6,67 @@
 <body>
     <script>
         
+        let computerScore = 0;
+        let yourScore = 0;
+        console.log(game());
+
+        function computerPlay(){
+            let move = ['Rock', 'Paper', 'Scissors'];
+            return move[getRandomInt(3)];
+
+            function getRandomInt(max) {
+                return Math.floor(Math.random() * Math.floor(max));
+            }
+        }
+
+        function playRound(playerSelection, computerSelection){
+            let result = ""
+            if(playerSelection == 'Rock' && computerSelection == 'Paper'){
+                result = "You chose Rock, the computer chose Paper. You Lose.";
+                computerScore++;
+            }
+            else if(playerSelection == 'Paper' && computerSelection == 'Scissors' ){
+                result = "You chose Paper, the computer chose Scissors. You Lose.";
+                computerScore++;
+            }
+            else if(playerSelection == 'Scissors' && computerSelection == 'Rock' ){
+                result = "You chose Scissors, the computer chose Rock. You Lose.";
+                computerScore++;
+            }
+            else if(playerSelection == computerSelection ){
+                result = "Your both chose " + playerSelection + "." + " You Tie.";
+            }
+            else{
+                result = "You chose " + playerSelection + "," + " the computer chose " + computerSelection + "." + " You Win!";
+                yourScore++;
+            }
+            return result;
+        }
+
+        function game(){
+            
+            for(let round = 1; round <= 5; round++){
+                const playerSelection = prompt("Choose a move: Rock, Paper, or Scissors",);
+                const computerSelection = computerPlay();
+                const final = playRound(playerSelection,computerSelection);
+                console.log("Round: " + round);
+                console.log(final);
+            }
+            console.log("Computer's score: " + computerScore);
+            console.log("Your score: " + yourScore);
+
+            if(yourScore > computerScore){
+                return "You are the Winner!";
+            }
+            else if(yourScore == computerScore){
+                return "The game is a tie.";
+            }
+            else{
+                return "You are the Loser."
+            }
+        }
+        
+    
     </script>
 </body>
 </html>
